@@ -1,0 +1,574 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600|Raleway:300,400,500,600&display=swap");
+
+:root {
+  --blue: #5dacdd;
+  --green: #22d5ac;
+  --white: #ffffff;
+}
+
+.App,
+header,
+header .first,
+header .first .logo,
+header .company-name,
+.list,
+.sidebar,
+.container {
+  display: flex;
+}
+
+.App {
+  background-color: #3d358b;
+}
+
+header {
+  align-items: center;
+  justify-content: space-between;
+  min-height: 8vh;
+  font-family: "Raleway", sans-serif;
+  background-color: #ffffff;
+  padding: 0 95px;
+  border-top-left-radius: 40px;
+  z-index: 20;
+  box-shadow: 0px 3px 99px rgba(0, 0, 0, 0.11);
+}
+header .first {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: #eff3fb;
+}
+header .first i {
+  color: #3b3188;
+}
+header .first .head-search {
+  margin-left: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  border: 0 !important;
+  border-radius: 10px;
+  background: #e5edfc;
+  background-image: none;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px 12px;
+}
+header .first .head-search::placeholder {
+  color: #757994;
+}
+
+header .company-name {
+  align-items: center;
+  justify-self: right;
+}
+header .company-name .pic {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+header .company-name h3 {
+  font-size: 16px;
+  color: #707070;
+  font-weight: 6 00;
+  margin-right: 25px;
+}
+header .company-name i {
+  margin-left: 25px;
+  font-size: 25px;
+  color: #3b3188;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: #eee;
+  flex-direction: column;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  z-index: 200;
+}
+.sidebar {
+  font-family: "Raleway", sans-serif;
+  background-color: #3d358b;
+  flex-direction: column;
+  align-items: center;
+  /* min-height: 90vh; */
+  width: 280px;
+  z-index: 10;
+}
+.sidebar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #1d156d; */
+  color: #fff;
+  font-weight: 800;
+  font-size: 26px;
+  height: 89px;
+  width: 100%;
+}
+.sidebar .fulllist {
+  width: 100%;
+}
+.list {
+  font-size: 15px;
+  align-items: center;
+  /* justify-content: center; */
+  margin: 25px 0px;
+  padding: 0px 30px;
+  height: 53px;
+  width: 100%;
+  border-left: 7px solid #ffffff00;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    #3e358b04
+  );
+  transition: all 0.8s;
+}
+.links {
+  text-decoration: none;
+  color: #ffffff;
+}
+.links-active .list {
+  /* color: blueviolet; */
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.438),
+    #3d358b
+  );
+  border-color: #ffffff;
+}
+.list img {
+  margin-right: 20px;
+}
+/* .list:hover {
+      cursor: pointer;
+      border-color: #60B2E5;
+    } */
+
+.icons {
+  width: 20px;
+}
+/* ======================================= */
+/* ============= Dash Board ============= */
+/* ===================================== */
+.Dashboard,
+.dash-contain,
+.emp-details,
+.perfomance h1,
+.credentials,
+.cards,
+.buttons,
+.buttons .button,
+.others,
+.others .vendors,
+.others .clients,
+.credentials .info,
+.dash-contain .dash-title,
+.dash-contain .emp-title,
+.buttons .button .sub-cat {
+  display: flex;
+}
+
+.Dashboard {
+  min-height: 92vh;
+  justify-content: space-between;
+  background-color: #eee;
+  width: 1640px;
+}
+
+.dash-contain {
+  width: 70%;
+  /* height: 100%; */
+  flex-direction: column;
+  margin: 20px 20px 20px 60px;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.dash-contain .dash-title {
+  justify-content: space-between;
+  align-items: center;
+}
+.dash-contain .dash-title h3 {
+  color: #333539;
+  font-size: 20px;
+  font-weight: 400;
+}
+.dash-contain .dash-title a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 300;
+  background-color: #6672fb;
+  padding: 10px 22px;
+  border-radius: 8px;
+}
+.dash-contain .dash-title a i {
+  margin-left: 15 px;
+}
+
+.emp-details {
+  background-color: #668bfb46;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  width: 1196px;
+  min-height: 237px;
+}
+.emp-details img {
+  width: 450px;
+}
+.credentials {
+  align-items: center;
+  margin-left: 28px;
+}
+.credentials .info {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 26px;
+  font-family: "Poppins", sans-serif;
+  min-height: 240px;
+}
+.credentials .info h1 {
+  color: #333539;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+.credentials .info p {
+  color: #4d4d4d;
+  font-size: 14px;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+.credentials .info a {
+  background-color: #6672fb;
+  padding: 10px 22px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+.dash-contain .emp-title {
+  justify-content: space-between;
+}
+.dash-contain .emp-title h3 {
+  color: #333539;
+  font-size: 20px;
+  font-weight: 400;
+}
+.dash-contain .emp-title a {
+  text-decoration: none;
+  padding: 7px 12px;
+  background-color: #eff3fb;
+  color: #4d4d4d;
+  border-radius: 9px;
+  font-size: 14px;
+}
+.dash-contain .emp-title a i {
+  margin-left: 5px;
+}
+
+.cards {
+  font-family: "Raleway", sans-serif;
+  align-items: center;
+  justify-content: space-between;
+  width: 1196px;
+}
+.cards .card {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 240px;
+  height: 197px;
+  /* background-color: #6672fb; */
+  border-radius: 20px;
+  transition: all 0.5s ease;
+}
+.cards .card i {
+  color: #fff;
+}
+.cards .card i:hover {
+  cursor: pointer;
+}
+.cards .card .card-contain h3 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+.cards .card .card-contain h1 {
+  font-size: 43px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.card:hover {
+  box-shadow: 0 7px 28px rgba(102, 114, 251, 0.56);
+}
+
+.buttons,
+.buttons .button,
+.buttons .button .sub-cat {
+  align-items: center;
+}
+.buttons {
+  font-family: "Raleway", sans-serif;
+  width: 1196px;
+  border-radius: 20px;
+  flex-direction: column;
+}
+.buttons .button-link {
+  width: 100%;
+  text-decoration: none;
+  color: #5e5e5e;
+}
+.buttons .button {
+  justify-content: space-between;
+  margin-bottom: 13px;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666666;
+  width: 100%;
+  height: 64px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+.buttons .button:hover {
+  background-color: #6672fb;
+}
+.buttons .button:hover .fa-trash {
+  color: #ffffff;
+}
+.buttons .button .fa-yin-yang {
+  background-color: #f8b849;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+.buttons .button .link-name {
+  margin-left: 20px;
+}
+.buttons .button .date {
+  color: #61657e;
+  font-size: 11px;
+  margin-left: 80px;
+}
+.buttons .button .time {
+  color: #61657e;
+  font-size: 11px;
+  margin-left: 60px;
+}
+.buttons .button .fa-trash {
+  color: #4d4d4d;
+}
+.others {
+  font-family: "Raleway", sans-serif;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6f9fd;
+  height: 100%;
+  width: 23%;
+  padding: 20px;
+}
+.others .perfomance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.others .perfomance .title {
+  color: var(--blue);
+  font-family: "Poppins", sans-serif;
+  font-size: 49px;
+  font-weight: 600;
+  align-items: center;
+}
+.others .perfomance .num {
+  color: var(--green);
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+  margin-left: 20px;
+  font-size: 105px;
+}
+.others .vendors,
+.others .clients {
+  padding: 15px 0px;
+  width: 100%;
+  flex-direction: column;
+}
+.others .vendc-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.others .vendc-title h2 {
+  font-size: 20px;
+  font-weight: bolder;
+  color: #828282;
+}
+.others .vendc-title span {
+  padding: 12px;
+  background-color: #eff3fb;
+  border-radius: 9px;
+  font-size: 14px;
+}
+.others .vendc-title span i {
+  margin-left: 5px;
+}
+.others .vendor,
+.others .client {
+  margin: 10px 0px;
+  padding: 16px 0px 16px 37px;
+  border: 0.5px solid #b7b7b76c;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 16px;
+  color: #686868;
+  background-color: #ffffff;
+}
+/* ======================================= */
+/* ============== New Page ============== */
+/* ===================================== */
+.New {
+  display: flex;
+  min-height: 92vh;
+  flex-direction: column;
+  background-color: #fbfbfb;
+  padding: 20px 40px;
+  width: 1640px;
+}
+.New h4 {
+  font-size: 20px;
+  color: #333539;
+  font-weight: 400;
+}
+.New .cards {
+  margin-top: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.New .cards .card {
+  margin: 0px 70px 0px 0px;
+}
+.New .cards .card-link {
+  text-decoration: none;
+}
+.New .cards .card-contain h3 {
+  font-size: 19px;
+  text-transform: uppercase;
+  margin-top: 35px;
+}
+/* ======================================= */
+/* ============== Sales Page ============== */
+/* ===================================== */
+.Sale {
+  display: flex;
+  min-height: 92vh;
+  /* justify-content: center; */
+  flex-direction: column;
+  background-color: #fbfbfb;
+  padding: 20px 40px;
+  width: 1640px;
+}
+.Sale h4 {
+  font-size: 20px;
+  color: #333539;
+  font-weight: 400;
+}
+.Sale .cards {
+  margin-top: 50px;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: flex-start;
+}
+.Sale .cards .card {
+  margin: 0px 70px 0px 0px;
+}
+.Sale .cards .card-a {
+  background-color: #e8523f;
+}
+.Sale .cards .card-b {
+  background-color: #6672fb;
+}
+.Sale .cards .card-link {
+  text-decoration: none;
+}
+.Sale .cards .card-contain .img-a {
+  width: 64px;
+}
+.Sale .cards .card-contain .img-b {
+  width: 44px;
+}
+.Sale .cards .card-contain h5 {
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+.Sale .cards .card-contain h1 {
+  margin-top: 8px;
+  font-size: 23px;
+  font-weight: 600;
+}
+/* ======================================= */
+/* ============== Add Page ============== */
+/* ===================================== */
+.Add {
+  display: flex;
+  flex-direction: column;
+  background-color: #fbfbfb;
+  padding: 20px 40px;
+  width: 1640px;
+  min-height: 92vh;
+}
+.Add h4 {
+  font-size: 20px;
+  color: #333539;
+  font-weight: 400;
+}
+.Add .cards {
+  margin-top: 50px;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: flex-start;
+}
+.Add .cards .card {
+  margin: 0px 50px 0px 0px;
+}
+.Add .cards .card-a {
+  background-color: #e8523f;
+}
+.Add .cards .card-b {
+  background-color: #6672fb;
+}
+.Add .cards .card-c {
+  background-color: #f8b849;
+}
+.Add .cards .card-d {
+  background-color: #1f998e;
+}
+.Add .cards .card-link {
+  text-decoration: none;
+}
+.Add .cards .card-contain h3 {
+  font-size: 19px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}

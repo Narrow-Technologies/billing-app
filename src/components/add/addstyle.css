@@ -1,0 +1,186 @@
+.lister {
+  display: flex;
+  flex-direction: column;
+  background-color: #fbfbfb;
+  padding: 70px 105px;
+  width: 1640px;
+  min-height: 92vh;
+}
+
+.lister .vendor-table {
+  position: absolute;
+  margin-top: 60px;
+  border-collapse: collapse;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+}
+.lister .vendor-table thead {
+  font-weight: 800;
+  font-size: 22px;
+  color: #949494;
+}
+.lister .vendor-table tbody .fa {
+  cursor: pointer;
+  color: #5cabdc;
+  margin-right: 20px;
+}
+.lister .vendor-table tbody .action {
+  color: red;
+}
+.lister td {
+  padding: 10px 24px;
+  border: 1px solid #d6d5d5;
+}
+.lister tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+.lister .vendor-table td:nth-child(1) {
+  text-align: center;
+  width: 55px;
+}
+.lister .vendor-table td:nth-child(2) {
+  width: 555px;
+}
+.lister .vendor-table td:nth-child(3) {
+  width: 245px;
+}
+.lister .vendor-table td:nth-child(4) {
+  width: 164px;
+}
+.lister .vendor-table td:nth-child(5) {
+  width: 166px;
+}
+
+/* ======================================= */
+/* ========== ADDVENDOR POPUP =========== */
+/* ===================================== */
+.overlay,
+.popup,
+.popup .left,
+.popup .left .row,
+.popup .right {
+  display: flex;
+  align-items: center;
+}
+
+.adder .button {
+  position: absolute;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: #5cabdc;
+  box-shadow: 0px 3px 19px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  transition: all 700ms;
+}
+.adder .button:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+.adder .button:active {
+  transform: translateY(0px) scale(1);
+  box-shadow: 0px 3px 19px rgba(0, 0, 0, 0);
+}
+.adder .button i {
+  margin-right: 12px;
+}
+
+.overlay {
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 20;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popup {
+  justify-content: space-around;
+  /* margin: 0px auto; */
+  padding: 30px 0px;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 1425px;
+  height: 690px;
+  position: relative;
+  transition: all 1s ease-in-out;
+  z-index: 20;
+}
+.popup .left {
+  width: 810px;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+}
+.popup .left .row {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+.popup .left .row label {
+  font-size: 21px;
+  color: #202020;
+}
+.popup .left .row input {
+  outline: none;
+  border: none;
+  border: 0.5px solid #70707098;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 21px;
+  padding: 20px 10px;
+  width: 570px;
+  height: 40px;
+}
+.popup .right {
+  justify-content: space-around;
+  height: 100%;
+  flex-direction: column;
+}
+.popup .right textarea {
+  outline: none;
+  border: none;
+  border: 0.5px solid #70707091;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 430px;
+  height: 400px;
+  font-size: 24px;
+}
+.popup .right textarea::placeholder {
+  font-size: 24px;
+  color: #20202034;
+}
+.popup .right .form-add {
+  cursor: pointer;
+  align-self: flex-end;
+  outline: none;
+  border: none;
+  background-color: #2f296b;
+  color: #ffffff;
+  padding: 8px 70px;
+  font-size: 19px;
+  border-radius: 12px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.45);
+}
+.popup .right .form-add:hover {
+  opacity: 0.9;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}

@@ -1,0 +1,255 @@
+/* ======================================= */
+/* ========== SalesReturn Page ========== */
+/* ===================================== */
+.NewPurchase,
+.SalesReturn,
+.PurchaseReturn,
+.details,
+.details .credential,
+.invoice-no {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+}
+.NewPurchase,
+.SalesReturn,
+.PurchaseReturn {
+  position: relative;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  padding: 45px 70px;
+  /* margin: 40px 40px; */
+  width: 1640px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.089), 0 3px 13px rgba(0, 0, 0, 0.171);
+}
+
+.details {
+  /* background-color: red; */
+  height: 150px;
+  position: relative;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--green);
+  padding: 20px 0px;
+}
+.details .credential {
+  margin-left: 0;
+  align-items: center;
+}
+.details .perfomance {
+  margin-right: 0;
+}
+.details .credential img {
+  width: 100px;
+}
+.details .credential .info {
+  margin-left: 15px;
+}
+.details .credential .info p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #06304a;
+}
+.details .credential .info h3 {
+  margin-bottom: 2px;
+  font-size: 17px;
+  color: #06304a;
+}
+.details .perfomance h2 {
+  font-size: 35px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.details .perfomance p {
+  color: #3f4040;
+  text-align: right;
+  font-weight: 600;
+  font-size: 17px;
+}
+.invoice-no {
+  position: relative;
+  padding: 40px 0px;
+}
+.invoice-no h3 {
+  font-size: 25px;
+  color: var(--green);
+}
+.invoice-no .selector {
+  color: #06304a;
+  font-weight: 600;
+  font-size: 17px;
+  margin-left: 10px;
+}
+.invoice-no .selector p {
+  margin-top: 18px;
+}
+
+/*============== SELECT BOX ================*/
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background-image: none;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  width: 255px;
+  height: 35px;
+  line-height: 2;
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: 13px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+select {
+  color: #06304a;
+  font-weight: 600;
+  font-size: 15px;
+  flex: 1;
+  padding: 0 10px;
+  cursor: pointer;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+.select::after {
+  content: "\25BC";
+  color: var(--green);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0px 15px;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+.select:hover::after {
+  opacity: 0.7;
+}
+select:hover {
+  opacity: 0.8;
+}
+
+select .disable {
+  display: none;
+}
+select option {
+  background-color: rgb(255, 255, 255);
+}
+
+/*============== TABLE ================*/
+.table {
+  margin-top: 50px;
+  width: 100%;
+  position: relative;
+}
+.table table {
+  position: relative;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table table td:nth-child(1) {
+  text-align: center;
+  width: 60px;
+}
+.table table td:nth-child(2) {
+  width: 500px;
+}
+.table table td:nth-child(3) {
+  width: 150px;
+}
+.table table td:nth-child(4) {
+  width: 150px;
+}
+.table table td:nth-child(5) {
+  width: 160px;
+}
+.table table tbody td:nth-child(n + 3) {
+  text-align: right;
+}
+
+.table table td {
+  background-color: #ffffff;
+  padding: 10px 24px;
+  border-collapse: collapse;
+}
+.table table thead td {
+  border: 1px solid #333333;
+}
+.table table tbody td {
+  border: 1px solid #33333381;
+}
+.table table thead {
+  text-align: center;
+}
+
+.table table thead {
+  font-size: 19px;
+  font-weight: bold;
+  color: #555555;
+}
+.table table tbody {
+  font-size: 15px;
+  font-weight: 500;
+  color: #555555;
+}
+
+.table table tbody tr:nth-child(n + 7) > td:nth-child(-n + 4) {
+  border: none;
+}
+.table table tbody tr:nth-child(n + 7) > td:nth-child(even) {
+  color: #b5b5b5;
+  font-size: 17px;
+  font-weight: 600;
+}
+.table table tbody tr:last-child > td:nth-child(even) {
+  color: rgb(0, 0, 0);
+}
+
+.table .reason {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 3px 21px rgba(0, 0, 0, 0.16);
+  padding: 20px;
+  font-size: 20px;
+  top: 360px;
+  left: 20px;
+  width: 951px;
+  height: 151px;
+}
+.table .reason::placeholder {
+  font-size: 20px;
+  color: #a5a5a5;
+}
+.table .table-buttons {
+  text-align: right;
+  margin: 30px 0px;
+}
+.table .table-buttons input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: 0 3px 19px rgba(0, 0, 0, 0.24);
+  border: 0 !important;
+  border-radius: 8px;
+  margin-left: 20px;
+  padding: 8px 55px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: var(--blue);
+  color: #ffffff;
+}
