@@ -19,6 +19,7 @@ header .company-name,
 
 .App {
   background-color: #3d358b;
+  min-width: 1366px;
 }
 
 header {
@@ -53,7 +54,7 @@ header .first .head-search {
   border-radius: 10px;
   background: #e5edfc;
   background-image: none;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
   padding: 8px 12px;
 }
@@ -68,19 +69,19 @@ header .company-name {
 header .company-name .pic {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 36px;
+  height: 36px;
   margin-right: 20px;
 }
 header .company-name h3 {
-  font-size: 16px;
+  font-size: 12px;
   color: #707070;
   font-weight: 6 00;
   margin-right: 25px;
 }
 header .company-name i {
   margin-left: 25px;
-  font-size: 25px;
+  font-size: 20px;
   color: #3b3188;
 }
 
@@ -91,6 +92,7 @@ header .company-name i {
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
   z-index: 200;
+  width: 84%; /*!==========MAIN MAIN============>Main for responsive 1150px 84%*/
 }
 .sidebar {
   font-family: "Raleway", sans-serif;
@@ -98,7 +100,7 @@ header .company-name i {
   flex-direction: column;
   align-items: center;
   /* min-height: 90vh; */
-  width: 280px;
+  width: 16%; /*!==========MAIN MAIN============>Main for responsive 216px 16%*/
   z-index: 10;
 }
 .sidebar .logo {
@@ -119,9 +121,9 @@ header .company-name i {
   font-size: 15px;
   align-items: center;
   /* justify-content: center; */
-  margin: 25px 0px;
-  padding: 0px 30px;
-  height: 53px;
+  margin: 15px 0px;
+  padding: 12px 30px;
+  /* height: 53px; */
   width: 100%;
   border-left: 7px solid #ffffff00;
   background-image: linear-gradient(
@@ -180,14 +182,15 @@ header .company-name i {
   min-height: 92vh;
   justify-content: space-between;
   background-color: #eee;
-  width: 1640px;
+  width: 100%; /*!===============================>Main for responsive*/
 }
 
 .dash-contain {
   width: 70%;
   /* height: 100%; */
   flex-direction: column;
-  margin: 20px 20px 20px 60px;
+  /* margin: 20px 20px 20px 60px; */
+  padding: 20px;
   /* align-items: center; */
   justify-content: space-between;
 }
@@ -197,14 +200,14 @@ header .company-name i {
 }
 .dash-contain .dash-title h3 {
   color: #333539;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
 }
 .dash-contain .dash-title a {
   text-decoration: none;
   color: #ffffff;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
   background-color: #6672fb;
   padding: 10px 22px;
   border-radius: 8px;
@@ -218,11 +221,12 @@ header .company-name i {
   align-items: center;
   justify-content: space-between;
   border-radius: 20px;
-  width: 1196px;
-  min-height: 237px;
+  margin: 20px 0px;
+  width: 745px; /*!===============================>Main for responsive*/
+  min-height: 186px;
 }
 .emp-details img {
-  width: 450px;
+  width: 350px;
 }
 .credentials {
   align-items: center;
@@ -232,13 +236,12 @@ header .company-name i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 26px;
   font-family: "Poppins", sans-serif;
-  min-height: 240px;
+  max-height: 240px;
 }
 .credentials .info h1 {
   color: #333539;
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 400;
   margin-bottom: 10px;
   align-self: flex-start;
@@ -254,7 +257,7 @@ header .company-name i {
   padding: 10px 22px;
   color: #fff;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 11px;
   border-radius: 8px;
   align-self: flex-start;
 }
@@ -264,8 +267,8 @@ header .company-name i {
 }
 .dash-contain .emp-title h3 {
   color: #333539;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
 }
 .dash-contain .emp-title a {
   text-decoration: none;
@@ -273,7 +276,8 @@ header .company-name i {
   background-color: #eff3fb;
   color: #4d4d4d;
   border-radius: 9px;
-  font-size: 14px;
+  font-size: 9px;
+  font-weight: 600;
 }
 .dash-contain .emp-title a i {
   margin-left: 5px;
@@ -283,14 +287,15 @@ header .company-name i {
   font-family: "Raleway", sans-serif;
   align-items: center;
   justify-content: space-between;
-  width: 1196px;
+  width: 745px; /*!===============================>Main for responsive*/
+  margin: 20px 0px;
 }
 .cards .card {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  width: 240px;
-  height: 197px;
+  width: 170px; /*!===============================>Main for responsive*/
+  height: 140px;
   /* background-color: #6672fb; */
   border-radius: 20px;
   transition: all 0.5s ease;
@@ -301,13 +306,16 @@ header .company-name i {
 .cards .card i:hover {
   cursor: pointer;
 }
+.cards .card .card-contain img {
+  width: 40px;
+}
 .cards .card .card-contain h3 {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 10px;
   color: rgb(255, 255, 255);
 }
 .cards .card .card-contain h1 {
-  font-size: 43px;
+  font-size: 25px;
   font-weight: 800;
   color: #ffffff;
 }
@@ -322,7 +330,8 @@ header .company-name i {
 }
 .buttons {
   font-family: "Raleway", sans-serif;
-  width: 1196px;
+  width: 745px; /*!===============================>Main for responsive*/
+  margin: 20px 0px;
   border-radius: 20px;
   flex-direction: column;
 }
@@ -379,31 +388,32 @@ header .company-name i {
   justify-content: center;
   background-color: #f6f9fd;
   height: 100%;
-  width: 23%;
-  padding: 20px;
+  width: 30%;
+  padding: 30px;
 }
 .others .perfomance {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  width: 100%;
+  padding: 15px; /*!===============================>Main for responsive*/
   background-color: #ffffff;
   border-radius: 10px;
 }
 .others .perfomance .title {
   color: var(--blue);
   font-family: "Poppins", sans-serif;
-  font-size: 49px;
-  font-weight: 600;
+  font-size: 31px;
+  font-weight: 600; /*!===============================>Main for responsive*/
   align-items: center;
 }
 .others .perfomance .num {
   color: var(--green);
   font-weight: 500;
   font-family: "Raleway", sans-serif;
-  margin-left: 20px;
-  font-size: 105px;
+  margin-left: 20px; /*!===============================>Main for responsive*/
+  font-size: 70px;
 }
 .others .vendors,
 .others .clients {
@@ -418,27 +428,28 @@ header .company-name i {
   margin-bottom: 20px;
 }
 .others .vendc-title h2 {
-  font-size: 20px;
-  font-weight: bolder;
+  font-size: 11px;
+  font-weight: 700;
   color: #828282;
 }
 .others .vendc-title span {
   padding: 12px;
   background-color: #eff3fb;
   border-radius: 9px;
-  font-size: 14px;
+  font-size: 10px;
+  font-weight: 600;
 }
 .others .vendc-title span i {
   margin-left: 5px;
 }
 .others .vendor,
 .others .client {
-  margin: 10px 0px;
-  padding: 16px 0px 16px 37px;
+  margin: 7px 0px;
+  padding: 12px 0px 12px 25px;
   border: 0.5px solid #b7b7b76c;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  font-size: 16px;
+  font-size: 10px;
   color: #686868;
   background-color: #ffffff;
 }
@@ -451,7 +462,7 @@ header .company-name i {
   flex-direction: column;
   background-color: #fbfbfb;
   padding: 20px 40px;
-  width: 1640px;
+  width: 100%;
 }
 .New h4 {
   font-size: 20px;
@@ -485,7 +496,7 @@ header .company-name i {
   flex-direction: column;
   background-color: #fbfbfb;
   padding: 20px 40px;
-  width: 1640px;
+  width: 100%;
 }
 .Sale h4 {
   font-size: 20px;
@@ -535,7 +546,7 @@ header .company-name i {
   flex-direction: column;
   background-color: #fbfbfb;
   padding: 20px 40px;
-  width: 1640px;
+  width: 100%;
   min-height: 92vh;
 }
 .Add h4 {
