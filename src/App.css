@@ -19,7 +19,7 @@ header .company-name,
 
 .App {
   background-color: #3d358b;
-  min-width: 1366px;
+  min-width: 1340px; /*!==========REALLY FUCKING IMPORTANTTT============>Main for responsive 1150px 84%*/
 }
 
 header {
