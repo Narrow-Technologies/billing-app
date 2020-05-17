@@ -107,14 +107,14 @@
   padding: 30px 0px;
   background: rgb(255, 255, 255);
   border-radius: 5px;
-  width: 1425px;
-  height: 690px;
+  width: 1000px;
+  height: 500px;
   position: relative;
   transition: all 1s ease-in-out;
   z-index: 20;
 }
 .popup .left {
-  width: 810px;
+  width: 500px;
   justify-content: center;
   height: 100%;
   flex-direction: column;
@@ -136,8 +136,24 @@
   background-color: #f9f9f9;
   font-size: 21px;
   padding: 20px 10px;
-  width: 570px;
+  width: 300px;
   height: 40px;
+}
+.popup .left .row select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0;
+  border: 0.5px solid #70707091;
+  border-radius: 5px;
+  background: #ffffff;
+  background-color: #f9f9f9;
+  font-size: 21px;
+  padding: 10px 10px;
+  width: 300px;
 }
 .popup .right {
   justify-content: space-around;
@@ -151,8 +167,8 @@
   border-radius: 5px;
   background-color: #f9f9f9;
   padding: 20px;
-  width: 430px;
-  height: 400px;
+  width: 330px;
+  height: 300px;
   font-size: 24px;
 }
 .popup .right textarea::placeholder {
@@ -176,7 +192,7 @@
 }
 .popup .close {
   position: absolute;
-  top: 20px;
+  top: 0px;
   right: 30px;
   transition: all 200ms;
   font-size: 30px;

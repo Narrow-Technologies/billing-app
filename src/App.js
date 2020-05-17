@@ -9,6 +9,7 @@ import Add from "./components/add/add";
 import VendorList from "./components/add/vendorlist";
 import ClientList from "./components/add/clientlist";
 import ProductList from "./components/add/productlist";
+import StockList from "./components/add/stocklist";
 import History from "./components/history";
 import NewPurchase from "./components/new/newpurchase";
 import SalesReturn from "./components/new/salesreturn";
@@ -49,6 +50,7 @@ function App() {
                 path='/components/add/productlist'
                 component={ProductList}
               />
+              <Route path='/components/add/stocklist' component={StockList} />
             </Switch>
           </div>
         </div>

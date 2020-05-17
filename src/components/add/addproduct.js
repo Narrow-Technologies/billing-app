@@ -1,44 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
+
+function useLists() {
+  const [taxes, setTaxes] = useState([]);
+  // const [num, setNum] = useState(1);
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection(`taxes`)
+      .onSnapshot((snapshot) => {
+        const taxes = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTaxes(taxes);
+      });
+  }, []);
+  return taxes;
+}
 
 function AddProduct() {
   const db = firebase.firestore();
 
-  const [company, setCompany] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [statezip, setSatezip] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const [product, setProduct] = useState("");
+  const [price, setPrice] = useState("");
+  const [unit, setUnit] = useState("");
+  const [tax, setTax] = useState("");
 
   const addDetail = (e) => {
     e.preventDefault();
-    db.collection(`vendors`).add({
-      company,
-      address,
-      city,
-      state,
-      statezip,
-      phone,
-      email,
+    db.collection(`products`).add({
       product,
+      price,
+      unit,
+      tax,
     });
-    setCompany("");
-    setState("");
-    setSatezip("");
-    setAddress("");
-    setCity("");
-    setPhone("");
-    setEmail("");
     setProduct("");
+    setPrice("");
+    setUnit("");
+    setTax("");
   };
 
+  const lists = useLists();
   return (
-    <div className='AddVendor adder'>
+    <div className='AddProduct adder'>
       <a className='button' href='#popup1'>
-        <i className='fa fa-plus-circle'></i> Add Vendor
+        <i className='fa fa-plus-circle'></i> Add Product
       </a>
       <div id='popup1' className='overlay'>
         <form className='popup' onSubmit={addDetail}>
@@ -47,69 +54,39 @@ function AddProduct() {
           </a>
           <div className='left'>
             <div className='row'>
-              <label htmlFor='company'>Comapny Name : </label>
-              <input
-                type='text'
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Address : </label>
-
-              <input
-                type='text'
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>City : </label>
-              <input
-                type='text'
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>State : </label>
-              <input
-                type='text'
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>State Zip : </label>
-              <input
-                type='text'
-                value={statezip}
-                onChange={(e) => setSatezip(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Phone : </label>
-              <input
-                type='phone'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Email : </label>
-              <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Product : </label>
+              <label htmlFor='product'>Product Name : </label>
               <input
                 type='text'
                 value={product}
                 onChange={(e) => setProduct(e.target.value)}
               />
+            </div>
+            <div className='row'>
+              <label htmlFor='company'>Price : </label>
+              <input
+                type='text'
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className='row'>
+              <label htmlFor='company'>Unit : </label>
+              <input
+                type='text'
+                value={unit}
+                onChange={(e) => setUnit(e.target.value)}
+              />
+            </div>
+            <div className='row'>
+              <label htmlFor='company'>Tax : </label>
+              <select value={tax} onChange={(e) => setTax(e.target.value)}>
+                <option selected id='disable'>
+                  Choose the tax
+                </option>
+                {lists.map((list) => (
+                  <option value={list.tax}>{list.tax}</option>
+                ))}
+              </select>
             </div>
           </div>
           <div className='right'>

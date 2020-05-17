@@ -83,7 +83,7 @@
 }
 
 /*============== SELECT BOX ================*/
-select {
+#invoice-select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -94,7 +94,7 @@ select {
   background: #ffffff;
   background-image: none;
 }
-select::-ms-expand {
+#invoice-select::-ms-expand {
   display: none;
 }
 .select {
@@ -108,7 +108,7 @@ select::-ms-expand {
   border-radius: 13px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }
-select {
+#invoice-select {
   color: #06304a;
   font-weight: 600;
   font-size: 15px;
@@ -137,14 +137,14 @@ select {
 .select:hover::after {
   opacity: 0.7;
 }
-select:hover {
+#invoice-select:hover {
   opacity: 0.8;
 }
 
-select .disable {
+#invoice-select .disable {
   display: none;
 }
-select option {
+#invoice-select option {
   background-color: rgb(255, 255, 255);
 }
 

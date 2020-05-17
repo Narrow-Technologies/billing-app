@@ -482,7 +482,7 @@ header .company-name i {
   text-decoration: none;
 }
 .New .cards .card-contain h3 {
-  font-size: 19px;
+  font-size: 12px;
   text-transform: uppercase;
   margin-top: 35px;
 }
@@ -522,20 +522,20 @@ header .company-name i {
   text-decoration: none;
 }
 .Sale .cards .card-contain .img-a {
-  width: 64px;
+  width: 54px;
 }
 .Sale .cards .card-contain .img-b {
-  width: 44px;
+  width: 30px;
 }
 .Sale .cards .card-contain h5 {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   margin-top: 15px;
 }
 .Sale .cards .card-contain h1 {
   margin-top: 8px;
-  font-size: 23px;
+  font-size: 13px;
   font-weight: 600;
 }
 /* ======================================= */
@@ -579,7 +579,7 @@ header .company-name i {
   text-decoration: none;
 }
 .Add .cards .card-contain h3 {
-  font-size: 19px;
+  font-size: 13px;
   text-transform: uppercase;
   margin-top: 20px;
 }

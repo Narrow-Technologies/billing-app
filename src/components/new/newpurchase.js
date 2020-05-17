@@ -1,6 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import firebase from "../../firebase";
+
+function useLists() {
+  const [vendors, setVendors] = useState([]);
+  // const [num, setNum] = useState(1);
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection(`vendors`)
+      .onSnapshot((snapshot) => {
+        const vendors = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setVendors(vendors);
+      });
+  }, []);
+  return vendors;
+}
 
 const NewPurchase = () => {
+  const lists = useLists();
+  const [selector, setSelector] = useState([]);
+  const [items, setItems] = useState([]);
+
+  console.log(selector);
+  console.log(items);
+  useEffect(() => {
+    if (selector != 0) {
+      firebase
+        .firestore()
+        .collection("vendors")
+        .then((snapshot) => {
+          const items = snapshot.docs.map((doc) => ({
+            id: (doc.id = selector),
+            ...doc.data(),
+          }));
+          setItems(items);
+        });
+    }
+  }, []);
+
   return (
     <div className='NewPurchase'>
       <div className='details'>
@@ -24,21 +64,34 @@ const NewPurchase = () => {
         <h3>Bill from :</h3>
         <div className='selector'>
           <form className='select'>
-            <select name='invoice' id='invoice-select'>
+            <select
+              name='invoice'
+              id='invoice-select'
+              onChange={(e) => setSelector(e.target.value)}
+            >
               <option selected disabled className='disable'>
                 Company name
               </option>
-              <option value='1'>Company name one</option>
-              <option value='2'>Company name two</option>
-              <option value='3'>Company name three</option>
-              <option value='4'>Company name four</option>
+              {lists.map((list) => (
+                <option value={list.id} key={list.id}>
+                  {list.company}
+                </option>
+              ))}
             </select>
           </form>
-          <p>
+          as
+          {items.map((item) => (
+            <p>
+              ADDRESS
+              <h2>{item.company}asa</h2>
+              <h3>{item.city}</h3>
+            </p>
+          ))}
+          {/* <p>
             Street address, <br />
             City,State ZIP Code, <br />
             Phone : 1234567890
-          </p>
+          </p> */}
         </div>
       </div>
       <div className='table'>

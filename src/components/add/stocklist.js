@@ -1,37 +1,39 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
-import AddProduct from "./addproduct";
+import AddStock from "./addstock";
 
 function useLists() {
-  const [products, setProducts] = useState([]);
+  const [stock, setStock] = useState([]);
   // const [num, setNum] = useState(1);
   useEffect(() => {
     firebase
       .firestore()
-      .collection(`products`)
+      .collection(`stock`)
       .onSnapshot((snapshot) => {
-        const products = snapshot.docs.map((doc) => ({
+        const stock = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setProducts(products);
+        setStock(stock);
       });
   }, []);
-  return products;
+  return stock;
 }
-const ProductList = () => {
+const StockList = () => {
   const lists = useLists();
   const handleOnDelete = (id) => {
-    firebase.firestore().collection(`products`).doc(id).delete();
+    firebase.firestore().collection(`stock`).doc(id).delete();
   };
   return (
     <div className='ProductList lister'>
-      <AddProduct />
+      <AddStock />
       <table className='vendor-table'>
         <thead>
           <tr>
             <td>NO</td>
             <td>PRODUCT NAME</td>
+            <td>PRICE</td>
+            <td>QUANTITY</td>
             <td>DATE</td>
             <td>ACTION</td>
           </tr>
@@ -40,7 +42,9 @@ const ProductList = () => {
           {lists.map((list) => (
             <tr key={list.id}>
               <td></td>
-              <td>{list.product}</td>
+              <td>{list.sproduct}</td>
+              <td>{list.priceper}</td>
+              <td>{list.quantity}</td>
               <td>STATUS</td>
               <td>
                 <i className='fa fa-edit'></i>
@@ -58,4 +62,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default StockList;
