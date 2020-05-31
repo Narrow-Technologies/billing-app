@@ -1,5 +1,4 @@
 import React from "react";
-import "../../App.css";
 import { Link } from "react-router-dom";
 
 function Sale() {
@@ -7,7 +6,7 @@ function Sale() {
     <div className='Sale'>
       <h4>Sales</h4>
       <div className='cards'>
-        <Link className='card-link' to='/components/history'>
+        <Link className='card-link' to='/components/new/sales/business'>
           <div className='card card-a'>
             <div className='card-contain'>
               <img className='img-a' src='/icons/business.svg' alt='icon' />
@@ -18,7 +17,7 @@ function Sale() {
             </div>
           </div>
         </Link>
-        <Link className='card-link' to='/components/history'>
+        <Link className='card-link' to='/components/new/sales/customer'>
           <div className='card card-b'>
             <div className='card-contain'>
               <img className='img-b' src='/icons/customer.svg' alt='icon' />

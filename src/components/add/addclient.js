@@ -12,6 +12,8 @@ function AddClient() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  const [show, setShow] = useState(false);
+
   const addDetail = (e) => {
     e.preventDefault();
     db.collection(`clients`).add({
@@ -27,16 +29,24 @@ function AddClient() {
     setPhone("");
     setEmail("");
     history.push("/components/add/clientlist");
+    setShow(false);
+  };
+
+  const on = () => {
+    setShow(true);
+  };
+  const off = () => {
+    setShow(false);
   };
 
   return (
     <div className='AddClient adder'>
-      <a className='button' href='#popup1'>
+      <a className='button' onClick={on}>
         <i className='fa fa-plus-circle'></i> Add Customer
       </a>
-      <div id='popup1' className='overlay'>
+      <div id='popup1' className={show ? "overlay-show" : "overlay"}>
         <form className='popup' onSubmit={addDetail}>
-          <a class='close' href='#'>
+          <a class='close' onClick={off}>
             &times;
           </a>
           <div className='left'>

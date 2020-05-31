@@ -18,7 +18,7 @@ header .company-name,
 }
 
 .App {
-  background-color: #3d358b;
+  background-color: #1d156d;
   min-width: 1340px; /*!==========REALLY FUCKING IMPORTANTTT============>Main for responsive 1150px 84%*/
 }
 
@@ -95,19 +95,34 @@ header .company-name i {
   width: 84%; /*!==========MAIN MAIN============>Main for responsive 1150px 84%*/
 }
 .sidebar {
+  position: relative;
   font-family: "Raleway", sans-serif;
   background-color: #3d358b;
   flex-direction: column;
   align-items: center;
-  /* min-height: 90vh; */
+  min-height: 90vh;
   width: 16%; /*!==========MAIN MAIN============>Main for responsive 216px 16%*/
   z-index: 10;
 }
-.sidebar .logo {
+.sidebara {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  background-color: #0aca5a;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  width: 16%; /*!==========MAIN MAIN============>Main for responsive 216px 16%*/
+  z-index: 10;
+}
+.sidebar .side-container {
+  position: fixed;
+  width: 16%; /*!==========MAIN MAIN============>Main for responsive 216px 16%*/
+}
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #1d156d; */
+  background-color: #1d156d;
   color: #fff;
   font-weight: 800;
   font-size: 26px;

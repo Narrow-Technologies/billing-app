@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
+import { useHistory } from "react-router-dom";
 
 function AddVendor() {
-  // const vendors = useVendor();
+  const history = useHistory();
   const db = firebase.firestore();
 
   const [company, setCompany] = useState("");
@@ -12,6 +13,8 @@ function AddVendor() {
   const [statezip, setSatezip] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
+  const [show, setShow] = useState(false);
 
   const addDetail = (e) => {
     e.preventDefault();
@@ -31,16 +34,25 @@ function AddVendor() {
     setCity("");
     setPhone("");
     setEmail("");
+    history.push("/components/add/vendorlist");
+    setShow(false);
+  };
+
+  const on = () => {
+    setShow(true);
+  };
+  const off = () => {
+    setShow(false);
   };
 
   return (
     <div className='AddVendor adder'>
-      <a className='button' href='#popup1'>
+      <a className='button' onClick={on}>
         <i className='fa fa-plus-circle'></i> Add Vendor
       </a>
-      <div id='popup1' className='overlay'>
+      <div id='popup1' className={show ? "overlay-show" : "overlay"}>
         <form className='popup' onSubmit={addDetail}>
-          <a class='close' href='#'>
+          <a class='close' onClick={off}>
             &times;
           </a>
           <div className='left'>

@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../../firebase";
+import firebase from "../../../firebase";
 
 function useLists() {
-  const [vendors, setVendors] = useState([]);
+  const [clients, setClients] = useState([]);
   // const [num, setNum] = useState(1);
   useEffect(() => {
     firebase
       .firestore()
-      .collection(`vendors`)
+      .collection(`clients`)
       .onSnapshot((snapshot) => {
-        const vendors = snapshot.docs.map((doc) => ({
+        const clients = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setVendors(vendors);
+        setClients(clients);
       });
   }, []);
-  return vendors;
+  return clients;
 }
 
-const NewPurchase = () => {
+function Customer() {
   const lists = useLists();
   const [selector, setSelector] = useState([]);
   const [items, setItems] = useState([]);
@@ -30,7 +30,7 @@ const NewPurchase = () => {
     if (selector != 0) {
       firebase
         .firestore()
-        .collection("vendors")
+        .collection("clients")
         .doc(selector)
         .get()
         .then(function (doc) {
@@ -45,7 +45,7 @@ const NewPurchase = () => {
     if (selector != 0) {
       firebase
         .firestore()
-        .collection(`vendors/${selector}/products`)
+        .collection("customersales")
         .onSnapshot((snapshot) => {
           const lols = snapshot.docs.map((doc) => ({
             id: doc.id,
@@ -78,7 +78,7 @@ const NewPurchase = () => {
 
   const addProduct = (e) => {
     e.preventDefault();
-    db.collection(`vendors/${selector}/products`).add({
+    db.collection("customersales").add({
       product,
       quantity,
       price,
@@ -90,7 +90,6 @@ const NewPurchase = () => {
   };
   console.log(lineTotals);
   console.log(totalAmount);
-
   return (
     <div className='NewPurchase'>
       <div className='details'>
@@ -106,12 +105,12 @@ const NewPurchase = () => {
           </div>
         </div>
         <div className='perfomance'>
-          <h2>New Purchase</h2>
+          <h2>New Sales</h2>
           <p>Date of sales : JUNE 14,2020</p>
         </div>
       </div>
       <div className='invoice-no'>
-        <h3>Bill from :</h3>
+        <h3>Bill to :</h3>
         <div className='selector'>
           <form className='select'>
             <select
@@ -120,21 +119,21 @@ const NewPurchase = () => {
               onChange={(e) => setSelector(e.target.value)}
             >
               <option selected disabled className='disable'>
-                Company name
+                Customer Phone Number
               </option>
               {lists.map((list) => (
                 <option value={list.id} key={list.id}>
-                  {list.company}
+                  {list.phone}
                 </option>
               ))}
             </select>
           </form>
           {items.map((item) => (
             <p>
-              Street address <br />
-              {item.city},{item.statezip}
+              Name : {item.firstname}
               <br />
-              Phone : {item.phone}
+              {item.address}
+              <br />
             </p>
           ))}
         </div>
@@ -187,8 +186,8 @@ const NewPurchase = () => {
                   <input
                     type='price'
                     name='add-price'
-                    id='add-price'
                     className='fielder'
+                    id='add-price'
                     placeholder='Add Unit Price'
                     onChange={(e) => setPrice(parseInt(e.target.value))}
                   />
@@ -230,6 +229,5 @@ const NewPurchase = () => {
       </div>
     </div>
   );
-};
-
-export default NewPurchase;
+}
+export default Customer;

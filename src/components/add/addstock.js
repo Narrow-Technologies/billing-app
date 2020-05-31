@@ -24,6 +24,7 @@ function AddStock() {
   const [sproduct, setSproduct] = useState("");
   const [priceper, setPriceper] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [show, setShow] = useState(false);
 
   const addDetail = (e) => {
     e.preventDefault();
@@ -35,16 +36,25 @@ function AddStock() {
     setSproduct("");
     setPriceper("");
     setQuantity("");
+    setShow(false);
   };
+
+  const on = () => {
+    setShow(true);
+  };
+  const off = () => {
+    setShow(false);
+  };
+
   const lists = useLists();
   return (
     <div className='AddProduct adder'>
-      <a className='button' href='#popup1'>
+      <a className='button' onClick={on}>
         <i className='fa fa-plus-circle'></i> Add Stock
       </a>
-      <div id='popup1' className='overlay'>
+      <div id='popup1' className={show ? "overlay-show" : "overlay"}>
         <form className='popup' onSubmit={addDetail}>
-          <a class='close' href='#'>
+          <a class='close' onClick={off}>
             &times;
           </a>
           <div className='left'>

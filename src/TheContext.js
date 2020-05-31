@@ -14,7 +14,7 @@ export const SideLinks = (props) => {
     {
       name: "Sales",
       src: "/icons/sales.svg",
-      goto: "/components/sales/sales",
+      goto: "/components/history",
     },
     {
       name: "New",
@@ -66,7 +66,7 @@ export const SideLinks = (props) => {
     {
       id: 1,
       name: "Sales",
-      goto: "/components/new/newsales",
+      goto: "/components/new/sales/sales",
       src: "/icons/salesnew.svg",
       color: "#E8523F",
     },

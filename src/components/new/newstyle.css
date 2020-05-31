@@ -219,6 +219,35 @@
   color: rgb(0, 0, 0);
 }
 
+.table table tbody .fielder {
+  font-size: 14px;
+  outline: none;
+  border: none;
+  padding: 4px 5px;
+  background-color: rgb(235, 235, 235);
+}
+.table table tbody .fielder-button {
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 5px;
+  width: 100px;
+  background-color: #5cabdc;
+  box-shadow: 0px 3px 19px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  transition: all 700ms;
+}
+.table table tbody .fielder-button input {
+  margin-left: 10px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+.table table tbody .fielder-button:hover {
+  transform: scale(1.02);
+}
+
 .table .reason {
   position: absolute;
   background-color: rgb(255, 255, 255);
