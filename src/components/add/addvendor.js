@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 
 function AddVendor() {
+  // const vendors = useVendor();
   const db = firebase.firestore();
 
   const [company, setCompany] = useState("");
@@ -11,7 +12,6 @@ function AddVendor() {
   const [statezip, setSatezip] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [product, setProduct] = useState("");
 
   const addDetail = (e) => {
     e.preventDefault();
@@ -23,7 +23,6 @@ function AddVendor() {
       statezip,
       phone,
       email,
-      product,
     });
     setCompany("");
     setState("");
@@ -32,7 +31,6 @@ function AddVendor() {
     setCity("");
     setPhone("");
     setEmail("");
-    setProduct("");
   };
 
   return (
@@ -101,14 +99,6 @@ function AddVendor() {
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Product : </label>
-              <input
-                type='text'
-                value={product}
-                onChange={(e) => setProduct(e.target.value)}
               />
             </div>
           </div>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import firebase from "../../firebase";
+import { useHistory } from "react-router-dom";
 
 function AddClient() {
+  const history = useHistory();
   const db = firebase.firestore();
 
   const [firstname, setFirstname] = useState("");
@@ -24,6 +26,7 @@ function AddClient() {
     setAddress("");
     setPhone("");
     setEmail("");
+    history.push("/components/add/clientlist");
   };
 
   return (

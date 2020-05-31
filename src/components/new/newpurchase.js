@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import firebase from "../../firebase";
 
 function useLists() {
@@ -23,23 +23,73 @@ const NewPurchase = () => {
   const lists = useLists();
   const [selector, setSelector] = useState([]);
   const [items, setItems] = useState([]);
+  const [lols, setLols] = useState([]);
 
-  console.log(selector);
-  console.log(items);
+  // console.log(lists);
   useEffect(() => {
     if (selector != 0) {
       firebase
         .firestore()
         .collection("vendors")
-        .then((snapshot) => {
-          const items = snapshot.docs.map((doc) => ({
-            id: (doc.id = selector),
-            ...doc.data(),
-          }));
+        .doc(selector)
+        .get()
+        .then(function (doc) {
+          const items = [];
+          items.push({ ...doc.data(), id: doc.id });
           setItems(items);
         });
     }
-  }, []);
+  }, [selector]);
+
+  useEffect(() => {
+    if (selector != 0) {
+      firebase
+        .firestore()
+        .collection(`vendors/${selector}/products`)
+        .onSnapshot((snapshot) => {
+          const lols = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setLols(lols);
+        });
+    }
+  }, [selector]);
+  // const product = useproduct();
+  const db = firebase.firestore();
+  const [product, setProduct] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [price, setPrice] = useState("");
+  const [lineTotal, setLineTotal] = useState("");
+  const [lineTotals, setLineTotals] = useState([]);
+  const [totalAmount, setTotal] = useState("");
+  const finalAmount = totalAmount + (235 + 123);
+
+  useEffect(() => {
+    setLineTotal(price * quantity);
+  }, [price, quantity]);
+  useEffect(() => {
+    let totalAmount = 0;
+    lineTotals.forEach((value) => {
+      totalAmount += Number(value);
+      setTotal(totalAmount);
+    });
+  }, [lineTotals]);
+
+  const addProduct = (e) => {
+    e.preventDefault();
+    db.collection(`vendors/${selector}/products`).add({
+      product,
+      quantity,
+      price,
+    });
+    setProduct("");
+    setQuantity("");
+    setPrice("");
+    setLineTotals((lineTotals) => [...lineTotals, lineTotal]);
+  };
+  console.log(lineTotals);
+  console.log(totalAmount);
 
   return (
     <div className='NewPurchase'>
@@ -79,120 +129,94 @@ const NewPurchase = () => {
               ))}
             </select>
           </form>
-          as
           {items.map((item) => (
             <p>
-              ADDRESS
-              <h2>{item.company}asa</h2>
-              <h3>{item.city}</h3>
+              Street address <br />
+              {item.city},{item.statezip}
+              <br />
+              Phone : {item.phone}
             </p>
           ))}
-          {/* <p>
-            Street address, <br />
-            City,State ZIP Code, <br />
-            Phone : 1234567890
-          </p> */}
         </div>
       </div>
       <div className='table'>
-        <table>
-          <thead>
-            <tr>
-              <td>NO</td>
-              <td>DESCRIPTION</td>
-              <td>QUANTITY</td>
-              <td>UNIT PRICE</td>
-              <td>LINE TOTAL</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Item 1 description </td>
-              <td>23</td>
-              <td>$ 44.6</td>
-              <td>$ 102225</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Item 2 description </td>
-              <td>23</td>
-              <td>$ 44.6</td>
-              <td>$ 102225</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Item 3 description </td>
-              <td>23</td>
-              <td>$ 44.6</td>
-              <td>$ 102225</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Item 4 description </td>
-              <td>23</td>
-              <td>$ 44.6</td>
-              <td>$ 102225</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                {" "}
-                <input
-                  type='text'
-                  name='add-product'
-                  id='add-product'
-                  placeholder='Add Product'
-                />{" "}
-              </td>
-              <td></td>
-              <td></td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>SUB TOAL</td>
-              <td>$ 102225.3</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>TAX RATE</td>
-              <td>8%</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>SALES TAX</td>
-              <td>235</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>SHIPPING CHARGE</td>
-              <td>123</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>TOTAL</td>
-              <td>$ 182565.3</td>
-            </tr>
-          </tbody>
-        </table>
+        <form onSubmit={addProduct}>
+          <table>
+            <thead>
+              <tr>
+                <td>NO</td>
+                <td>DESCRIPTION</td>
+                <td>QUANTITY</td>
+                <td>UNIT PRICE</td>
+                <td>LINE TOTAL</td>
+              </tr>
+            </thead>
+            <tbody>
+              {lols.map((lol) => (
+                <tr>
+                  <td></td>
+                  <td>{lol.product}</td>
+                  <td>{lol.quantity}</td>
+                  <td>{lol.price}</td>
+                  <td id='poper'>{lol.quantity * lol.price}</td>
+                </tr>
+              ))}
+              <tr>
+                <td></td>
+                <td>
+                  <input
+                    type='text'
+                    name='add-product'
+                    id='add-product'
+                    placeholder='Add Product'
+                    onChange={(e) => setProduct(e.target.value)}
+                  />
+                </td>
+                <td>
+                  <input
+                    type='number'
+                    name='add-quantity'
+                    id='add-quantity'
+                    placeholder='Add Quantity'
+                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                  />
+                </td>
+                <td>
+                  <input
+                    type='price'
+                    name='add-price'
+                    id='add-price'
+                    placeholder='Add Unit Price'
+                    onChange={(e) => setPrice(parseInt(e.target.value))}
+                  />
+                </td>
+                <td>
+                  <input type='submit' value='Add' />
+                </td>
+              </tr>
+              <tr className='totals'>
+                <td colSpan='4'>SUB TOAL</td>
+                <td>{totalAmount}</td>
+              </tr>
+              <tr className='totals'>
+                <td colSpan='4'>TAX RATE</td>
+                <td>8%</td>
+              </tr>
+              <tr className='totals'>
+                <td colSpan='4'>SALES TAX</td>
+                <td>235</td>
+              </tr>
+              <tr className='totals'>
+                <td colSpan='4'>SHIPPING CHARGE</td>
+                <td>123</td>
+              </tr>
+              <tr className='totals'>
+                <td colSpan='4'>TOTAL</td>
+                <td>{finalAmount}</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
         <div className='table-buttons'>
           <input type='button' value='MAIL' />
           <input type='button' value='PRINT' />

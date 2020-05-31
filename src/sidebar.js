@@ -7,7 +7,7 @@ const SideBar = () => {
   const [links, setLinks] = useContext(SidebarContext);
   return (
     <div className='sidebar'>
-      <div className='logo'>LOGO</div>
+      <div className='logo'>LOGO </div>
       <ul className='fulllist'>
         {links.map((link) => (
           <NavLink

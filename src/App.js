@@ -27,30 +27,47 @@ function App() {
             <Header />
             <Switch>
               <Route path='/' exact component={Dashboard} />
-              <Route path='/components/dashboard' component={Dashboard} />
-              <Route path='/components/sales/sales' component={Sales} />
-              <Route path='/components/new/new' component={New} />
-              <Route path='/components/add/add' component={Add} />
-              <Route path='/components/history' component={History} />
+              <Route path='/components/dashboard' exact component={Dashboard} />
+              <Route path='/components/sales/sales' exact component={Sales} />
+              <Route path='/components/new/new' exact component={New} />
+              <Route path='/components/add/add' exact component={Add} />
+              <Route path='/components/history' exact component={History} />
               <Route
                 path='/components/new/newpurchase'
+                exact
                 component={NewPurchase}
               />
               <Route
                 path='/components/new/salesreturn'
+                exact
                 component={SalesReturn}
               />
               <Route
                 path='/components/new/purchasereturn'
+                exact
                 component={PurchaseReturn}
               />
-              <Route path='/components/add/vendorlist' component={VendorList} />
-              <Route path='/components/add/clientlist' component={ClientList} />
+              <Route
+                path='/components/add/vendorlist'
+                exact
+                component={VendorList}
+              />
+              <Route
+                path='/components/add/clientlist'
+                exact
+                component={ClientList}
+              />
               <Route
                 path='/components/add/productlist'
+                exact
                 component={ProductList}
               />
-              <Route path='/components/add/stocklist' component={StockList} />
+              <Route
+                path='/components/add/stocklist'
+                exact
+                component={StockList}
+              />
+              <Route path='/' render={() => <div>404</div>} />
             </Switch>
           </div>
         </div>
