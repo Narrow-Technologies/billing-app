@@ -15,7 +15,7 @@ import NewPurchase from "./components/new/newpurchase";
 import SalesReturn from "./components/new/salesreturn";
 import PurchaseReturn from "./components/new/purchasereturn";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
