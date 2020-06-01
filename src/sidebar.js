@@ -9,7 +9,10 @@ const SideBar = () => {
   return (
     <div className='sidebar'>
       <div className='side-container'>
-        <div className='logo'>LOGO</div>
+        <div className='logo'>
+          <i className='fa fa-compress'></i>
+          <p>LOGO</p>
+        </div>
         <ul className='fulllist'>
           {links.map((link) => (
             <NavLink

@@ -151,7 +151,6 @@ header .company-name i {
 }
 .logo {
   display: flex;
-  justify-content: center;
   align-items: center;
   background-color: #1d156d;
   color: #fff;
@@ -159,6 +158,13 @@ header .company-name i {
   font-size: 26px;
   height: 89px;
   width: 100%;
+}
+.logo p {
+  align-self: center;
+}
+.logo i {
+  margin: 0px 28px;
+  color: #ffffff94;
 }
 .sidebar .fulllist {
   width: 100%;
