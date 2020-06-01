@@ -14,7 +14,7 @@ export const SideLinks = (props) => {
     {
       name: "Sales",
       src: "/icons/sales.svg",
-      goto: "/components/history",
+      goto: "/components/mainsales/common",
     },
     {
       name: "New",

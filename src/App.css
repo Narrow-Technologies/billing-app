@@ -21,6 +21,37 @@ header .company-name,
   background-color: #1d156d;
   min-width: 1340px; /*!==========REALLY FUCKING IMPORTANTTT============>Main for responsive 1150px 84%*/
 }
+.device {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(255, 255, 255);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 200;
+}
+.device h2 {
+  color: #3d3d3d;
+  font-family: "Raleway";
+  margin-left: 100px;
+  line-height: 50px;
+  letter-spacing: 3px;
+  word-spacing: 4px;
+}
+.device i {
+  color: rgb(27, 80, 194);
+}
+@media only screen and (max-width: 1000px) {
+  .device {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
 header {
   align-items: center;

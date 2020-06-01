@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import "./mainsales.css";
 
-function History() {
+const Common = () => {
   return (
     <div className='under'>
       <h1>
@@ -13,6 +13,6 @@ function History() {
       </Link>
     </div>
   );
-}
+};
 
-export default History;
+export default Common;

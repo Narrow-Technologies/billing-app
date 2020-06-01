@@ -1,0 +1,32 @@
+.under {
+  display: flex;
+  flex-direction: column;
+  background: url(./under_constructions_.svg) no-repeat center;
+  background-position-x: 90%;
+  background-position-y: 20%;
+  background-size: 30rem;
+  width: 100%; /*!===============================>Main for responsive*/
+  min-height: 92vh;
+}
+.under h1 {
+  font-family: "Raleway";
+  font-size: 90px;
+  color: #353535;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.under .link {
+  margin-left: 100px;
+  width: 230px;
+  margin-top: 50px;
+  text-decoration: none;
+  border: 2px solid #353535;
+  color: #303030;
+  font-size: 20px;
+  padding: 6px 12px;
+  border-radius: 18px;
+  transition: opacity 200ms ease-out;
+}
+.under .link:hover {
+  opacity: 0.7;
+}

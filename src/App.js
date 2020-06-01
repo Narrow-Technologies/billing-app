@@ -16,6 +16,7 @@ import SalesReturn from "./components/new/salesreturn";
 import PurchaseReturn from "./components/new/purchasereturn";
 import Business from "./components/new/sales/business";
 import Customer from "./components/new/sales/customer";
+import Common from "./components/mainsales/common";
 import "./App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -38,6 +39,11 @@ function App() {
               <Route path='/components/new/new' exact component={New} />
               <Route path='/components/add/add' exact component={Add} />
               <Route path='/components/history' exact component={History} />
+              <Route
+                path='/components/mainsales/common'
+                exact
+                component={Common}
+              />
               <Route
                 path='/components/new/newpurchase'
                 exact
@@ -85,6 +91,14 @@ function App() {
               />
               <Route path='/' render={() => <div>404</div>} />
             </Switch>
+          </div>
+          <div className='device'>
+            <h2>Oops !</h2>
+            <h2>
+              This web app can only <br /> viewed on large devices{" "}
+              <i className='fa fa-desktop'></i>
+              <i className='fa fa-laptop'></i>
+            </h2>
           </div>
         </div>
       </SideLinks>
