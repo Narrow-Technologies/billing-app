@@ -4,14 +4,22 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import axios from "axios";
 
+const myState = "VendorOneState";
+
 const NewPurchase = () => {
   const [lists, setLists] = useState([]);
   const [selector, setSelector] = useState([]);
   const [single, setSingle] = useState(null);
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
+  const [cgst, setCgst] = useState(false);
   const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    if (single) {
+      setCgst(single.state !== myState);
+    }
+  }, [single]);
   useEffect(() => {
     fetchingVendor();
   }, []);
@@ -43,13 +51,14 @@ const NewPurchase = () => {
     setSelector(e.target.value);
   };
   // console.log("here", single);
+  console.log(single ? single.state : single);
   // console.log(lists);
 
   const [product, setProduct] = useState("");
   const [addProducts, setAddProducts] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState(0);
-  const [tax, setTax] = useState("Nil");
+  const [tax, setTax] = useState(0);
   const [salesTax, setSalesTax] = useState(0);
   const [lineTotal, setLineTotal] = useState("");
   const [lineTotals, setLineTotals] = useState([]);
@@ -88,14 +97,13 @@ const NewPurchase = () => {
     productObj.lineTotal = lineTotal;
     productObj.quantity = quantity;
     console.log(productObj);
-    setSalesTax(
-      Number(
-        (
-          salesTax +
-          ((productObj.tax * productObj.price) / 100) * quantity
-        ).toFixed(2)
-      )
+    const mySalesTax = Number(
+      (
+        salesTax +
+        ((productObj.tax * productObj.price) / 100) * quantity
+      ).toFixed(2)
     );
+    setSalesTax(cgst ? mySalesTax * 2 : mySalesTax);
     setAddProducts([...addProducts, { ...productObj }]);
     setLineTotals([...lineTotals, lineTotal]);
     setLineTotal(0);
@@ -180,7 +188,7 @@ const NewPurchase = () => {
                   <td>{add.quantity}</td>
                   <td>{add.price}</td>
                   <td>{add.tax}%</td>
-                  <td>{add.tax}%</td>
+                  <td>{cgst ? add.tax : 0}%</td>
                   <td id='poper'>{add.lineTotal}</td>
                 </tr>
               ))}
@@ -218,10 +226,10 @@ const NewPurchase = () => {
                   <p>{price}</p>
                 </td>
                 <td>
-                  <p>{typeof tax === "string" ? tax : tax + "%"}</p>
+                  <p>{tax}%</p>
                 </td>
                 <td>
-                  <p>{typeof tax === "string" ? tax : tax + "%"}</p>
+                  <p>{cgst ? tax : 0}%</p>
                 </td>
                 <td>
                   {/* <div className='fielder-button'>
@@ -241,7 +249,7 @@ const NewPurchase = () => {
               </tr>
               <tr className='totals'>
                 <td colSpan='4'>TOTAL</td>
-                <td>{totalAmount}</td>
+                <td>{totalAmount + salesTax}</td>
               </tr>
               <tr className='totals'>
                 <td colSpan='4'>AMOUNT PAID</td>
