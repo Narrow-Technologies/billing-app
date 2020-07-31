@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../../firebase";
+import AddLoader from "./addLoader";
+import axios from "axios";
 import AddProduct from "./addproduct";
 
-function useLists() {
-  const [products, setProducts] = useState([]);
-  // const [num, setNum] = useState(1);
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection(`products`)
-      .onSnapshot((snapshot) => {
-        const products = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setProducts(products);
-      });
-  }, []);
-  return products;
-}
 const ProductList = () => {
-  const lists = useLists();
+  const [lists, setLists] = useState([]);
+  const [open, setOpen] = useState(false);
+  //5 12 18
+  useEffect(() => {
+    fetching();
+  }, []);
+  const fetching = async () => {
+    setOpen(true);
+    await axios.get("http://test.narrowtech.in/api/products").then((res) => {
+      setLists(res.data.data);
+      setOpen(false);
+    });
+  };
   const handleOnDelete = (id) => {
-    firebase.firestore().collection(`products`).doc(id).delete();
+    setOpen(true);
+    axios.delete(`http://test.narrowtech.in/api/products/${id}`).then((res) => {
+      console.log(res);
+      // setAdd(true);
+      fetching();
+    });
   };
   return (
     <div className='ProductList lister'>
-      <AddProduct />
+      <AddLoader loaders={open} />
+      <AddProduct trigger={fetching} />
       <table className='vendor-table'>
         <thead>
           <tr>
@@ -39,8 +41,8 @@ const ProductList = () => {
         <tbody>
           {lists.map((list) => (
             <tr key={list.id}>
-              <td></td>
-              <td>{list.product}</td>
+              <td>{list.id}</td>
+              <td>{list.name}</td>
               <td>STATUS</td>
               <td>
                 <i className='fa fa-edit'></i>

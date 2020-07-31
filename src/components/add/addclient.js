@@ -1,35 +1,46 @@
 import React, { useState } from "react";
-import firebase from "../../firebase";
-import { useHistory } from "react-router-dom";
+import axios from "axios";
+import AddSuccess from "./addsuccess";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+// import { useHistory } from "react-router-dom";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
-function AddClient() {
-  const history = useHistory();
-  const db = firebase.firestore();
-
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+function AddClient(props) {
+  // const history = useHistory();
+  const classes = useStyles();
+  const [add, setAdd] = useState(false);
+  const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [comments, setComments] = useState("");
+  const data = { name, address, phone, email, city, state, zip, comments };
   const [show, setShow] = useState(false);
 
   const addDetail = (e) => {
-    e.preventDefault();
-    db.collection(`clients`).add({
-      firstname,
-      lastname,
-      address,
-      phone,
-      email,
+    console.log(data);
+    axios.post("http://test.narrowtech.in/api/clients", data).then((res) => {
+      console.log(res);
+      if (res.data.error == false) {
+        props.trigger();
+        e.preventDefault();
+        setShow(false);
+      } else {
+        setAdd(false);
+        console.log("ohoooo errorrrr");
+      }
     });
-    setFirstname("");
-    setLastname("");
-    setAddress("");
-    setPhone("");
-    setEmail("");
-    history.push("/components/add/clientlist");
-    setShow(false);
   };
 
   const on = () => {
@@ -41,58 +52,75 @@ function AddClient() {
 
   return (
     <div className='AddClient adder'>
+      {/* <AddSuccess alerter={add} /> */}
       <a className='button' onClick={on}>
         <i className='fa fa-plus-circle'></i> Add Customer
       </a>
       <div id='popup1' className={show ? "overlay-show" : "overlay"}>
         <form className='popup' onSubmit={addDetail}>
-          <a class='close' onClick={off}>
+          <a className='close' onClick={off}>
             &times;
           </a>
           <div className='left'>
-            <div className='row'>
-              <label htmlFor='company'>First Name : </label>
-              <input
-                type='text'
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
+            <form className={classes.root} noValidate autoComplete='off'>
+              <TextField
+                id='outlined-basic'
+                label='Full Name'
+                variant='outlined'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Last Name : </label>
-
-              <input
-                type='text'
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Address : </label>
-              <input
-                type='text'
+              <TextField
+                id='outlined-basic'
+                label='Address'
+                variant='outlined'
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Phone : </label>
-              <input
-                type='phone'
+              <TextField
+                id='outlined-basic'
+                label='Phone'
+                variant='outlined'
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Email : </label>
-              <input
-                type='email'
+              <TextField
+                id='outlined-basic'
+                label='Email'
+                variant='outlined'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
+              <TextField
+                id='outlined-basic'
+                label='City'
+                variant='outlined'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <TextField
+                id='outlined-basic'
+                label='State'
+                variant='outlined'
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+              <TextField
+                id='outlined-basic'
+                label='Zip'
+                variant='outlined'
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+              />
+            </form>
           </div>
           <div className='right'>
+            <textarea
+              id='comment'
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              placeholder='Additional Comments'
+            ></textarea>
             <input className='form-add' type='submit' value='Save' />
           </div>
         </form>

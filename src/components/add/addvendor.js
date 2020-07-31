@@ -1,41 +1,45 @@
-import React, { useState, useEffect } from "react";
-import firebase from "../../firebase";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
+import AddSuccess from "./addsuccess";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+// import { useHistory } from "react-router-dom";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
-function AddVendor() {
-  const history = useHistory();
-  const db = firebase.firestore();
-
-  const [company, setCompany] = useState("");
+function AddVendor(props) {
+  const classes = useStyles();
+  const [add, setAdd] = useState(false);
+  const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [statezip, setSatezip] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [comments, setComments] = useState("");
+  const data = { name, address, phone, email, city, state, zip, comments };
   const [show, setShow] = useState(false);
 
   const addDetail = (e) => {
-    e.preventDefault();
-    db.collection(`vendors`).add({
-      company,
-      address,
-      city,
-      state,
-      statezip,
-      phone,
-      email,
+    console.log(data);
+    axios.post("http://test.narrowtech.in/api/vendors", data).then((res) => {
+      console.log(res);
+      if (res.data.error == false) {
+        props.trigger();
+        e.preventDefault();
+        setShow(false);
+      } else {
+        setAdd(false);
+        console.log("ohoooo errorrrr");
+      }
     });
-    setCompany("");
-    setState("");
-    setSatezip("");
-    setAddress("");
-    setCity("");
-    setPhone("");
-    setEmail("");
-    history.push("/components/add/vendorlist");
-    setShow(false);
   };
 
   const on = () => {
@@ -52,72 +56,67 @@ function AddVendor() {
       </a>
       <div id='popup1' className={show ? "overlay-show" : "overlay"}>
         <form className='popup' onSubmit={addDetail}>
-          <a class='close' onClick={off}>
+          <a className='close' onClick={off}>
             &times;
           </a>
           <div className='left'>
-            <div className='row'>
-              <label htmlFor='company'>Comapny Name : </label>
-              <input
-                type='text'
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
+            <form className={classes.root} noValidate autoComplete='off'>
+              <TextField
+                id='outlined-basic'
+                label='Company Name'
+                variant='outlined'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Address : </label>
-
-              <input
-                type='text'
+              <TextField
+                id='outlined-basic'
+                label='Address'
+                variant='outlined'
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>City : </label>
-              <input
-                type='text'
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>State : </label>
-              <input
-                type='text'
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>State Zip : </label>
-              <input
-                type='text'
-                value={statezip}
-                onChange={(e) => setSatezip(e.target.value)}
-              />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Phone : </label>
-              <input
-                type='phone'
+              <TextField
+                id='outlined-basic'
+                label='Phone'
+                variant='outlined'
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
-            </div>
-            <div className='row'>
-              <label htmlFor='company'>Email : </label>
-              <input
-                type='email'
+              <TextField
+                id='outlined-basic'
+                label='Email'
+                variant='outlined'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
+              <TextField
+                id='outlined-basic'
+                label='City'
+                variant='outlined'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <TextField
+                id='outlined-basic'
+                label='State'
+                variant='outlined'
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+              <TextField
+                id='outlined-basic'
+                label='Zip'
+                variant='outlined'
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+              />
+            </form>
           </div>
           <div className='right'>
             <textarea
-              name=''
-              id=''
+              id='comment'
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
               placeholder='Additional Comments'
             ></textarea>
             <input className='form-add' type='submit' value='Save' />

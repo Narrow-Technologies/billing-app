@@ -1,32 +1,39 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../../firebase";
+import AddLoader from "./addLoader";
+import axios from "axios";
 import AddVendor from "./addvendor";
 
-function useLists() {
-  const [vendors, setVendors] = useState([]);
-  // const [num, setNum] = useState(1);
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection(`vendors`)
-      .onSnapshot((snapshot) => {
-        const vendors = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setVendors(vendors);
-      });
-  }, []);
-  return vendors;
-}
 const VendorList = () => {
-  const lists = useLists();
-  const handleOnDelete = (id) => {
-    firebase.firestore().collection(`vendors`).doc(id).delete();
+  const [lists, setLists] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [vendors, setVendors] = useState([]);
+
+  useEffect(() => {
+    fetching();
+  }, []);
+
+  const fetching = async () => {
+    setOpen(true);
+    await axios.get("http://test.narrowtech.in/api/vendors").then((res) => {
+      console.log(res);
+      setLists(res.data.data);
+      setOpen(false);
+    });
   };
+
+  const handleOnDelete = (id) => {
+    setOpen(true);
+    axios.delete(`http://test.narrowtech.in/api/vendors/${id}`).then((res) => {
+      console.log(res);
+      // setAdd(true);
+      fetching();
+    });
+  };
+
   return (
     <div className='VendorList lister'>
-      <AddVendor />
+      <AddLoader loaders={open} />
+      <AddVendor trigger={fetching} />
       <table className='vendor-table'>
         <thead>
           <tr>
@@ -41,8 +48,8 @@ const VendorList = () => {
         <tbody>
           {lists.map((list) => (
             <tr key={list.id}>
-              <td></td>
-              <td>{list.company}</td>
+              <td>{list.id}</td>
+              <td>{list.name}</td>
               <td>{list.phone}</td>
               <td>{list.state}</td>
               <td>STATUS</td>
